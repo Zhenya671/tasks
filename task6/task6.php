@@ -1,18 +1,29 @@
 <?php
 
-function mondaysFromTo(){
+function mondaysFromTo(): bool
+{
 
-    $test = new DateTime("1.1.1900");
-    $test1 = new DateTime("31.12.1999");
-    while($test <= $test1 ){
+    $dateFrom = new DateTime("1.1.1900");
+    $dateTo = new DateTime("31.12.1999");
 
-        echo $test->modify('first monday')->format('d.m.Y').'<br>';
-        $test->modify("+1 month")->format('d.m.Y');
+    while($dateFrom->format('m-Y') < $dateTo->format('m-Y') ){
+
+        if ($dateFrom->format('D') == 'Mon'){
+
+            $dates[] = clone $dateFrom;
+
+        }
+
+        $dateFrom->modify("+1 month")->format('d.m.Y');
 
     }
+
+    foreach ($dates as $date) {
+        echo $date->format('d.m.Y').'<br>';
+    }
+
+    return false;
 
 }
 
 mondaysFromTo();
-
-

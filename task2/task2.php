@@ -1,7 +1,7 @@
 <?php
 
-
-function countdownToBirthday($i){
+function countdownToBirthday(string $i): string
+{
 
     $curDate = new DateTime("today");
     $birthday = new DateTime($i);
@@ -13,8 +13,8 @@ function countdownToBirthday($i){
         $birthday->modify('+1 year');
         $dif = $curDate->diff($birthday);
     }
-    echo $dif->days;
+    return $dif->days;
 
 }
 
-countdownToBirthday('03.02.2003');
+print countdownToBirthday('03.02.2003');

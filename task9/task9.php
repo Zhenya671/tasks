@@ -1,17 +1,21 @@
 <?php
 
-function findSumThree($array, $int): array
+function findSumThree(Array $array,int $int): array
 {
 
     $newArr = [];
 
     for ($i=0;$i <= count($array)-1; $i++) {
 
-        $sum = $array[$i] + $array[$i+1] + $array[$i+2];
+        $first = $array[$i];
+        $second = $array[$i+1];
+        $third = $array[$i+2];
+        $sum =  $first + $second + $third;
 
-        if ($sum == $int) {
 
-            $newArr[] = $sum;
+        if ((!empty($first)) && (!empty($second)) && (!empty($third)) && ($int == $sum)){
+
+                $newArr[] = $int;
 
         }
 

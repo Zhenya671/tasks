@@ -7,14 +7,14 @@ function findSumThree(array $array, int $int): array
 
     for ($i = 0; $i <= count($array) - 1; $i++) {
 
-        $first = $array[$i];
-        $second = $array[$i + 1];
-        $third = $array[$i + 2];
-        $sum = $first + $second + $third;
+        if ((!empty($array[$i])) && (!empty($array[$i + 1])) && (!empty($array[$i + 2])) && ($int == $array[$i] + $array[$i + 1] + $array[$i + 2])) {
 
+            $first = $array[$i];
+            $second = $array[$i + 1];
+            $third = $array[$i + 2];
+            $sum = $first + $second + $third;
 
-        if ((!empty($first)) && (!empty($second)) && (!empty($third)) && ($int == $sum)) {
-
+            echo "$first + $second + $third = $sum" . '<br>';
             $newArr[] = $int;
 
         }

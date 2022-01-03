@@ -24,12 +24,14 @@ class SingletonExampleParent
 
         }
 
-        return  $_instance;
+        return $_instance;
 
     }
 }
 
-class SingletonExampleChild extends SingletonExampleParent {}
+class SingletonExampleChild extends SingletonExampleParent
+{
+}
 
 
 $o = SingletonExampleParent::getInstance();
@@ -37,4 +39,3 @@ $obj = SingletonExampleChild::getInstance();
 
 var_dump($obj);
 var_dump($o);
-

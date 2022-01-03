@@ -1,6 +1,7 @@
 <?php
 
-class Calculator {
+class Calculator
+{
 
     protected int $firstArgument;
     protected int $secondArgument;
@@ -9,7 +10,8 @@ class Calculator {
     protected int $answer;
 
 
-    public function __construct($firstArgument, $secondArgument){
+    public function __construct($firstArgument, $secondArgument)
+    {
 
         $this->firstArgument = $firstArgument;
         $this->secondArgument = $secondArgument;
@@ -19,7 +21,7 @@ class Calculator {
     public function __toString(): string
     {
 
-        return $this->string. " = " . $this->answer;
+        return $this->string . " = " . $this->answer;
 
     }
 
@@ -29,7 +31,7 @@ class Calculator {
         $a = $this->firstArgument;
         $b = $this->secondArgument;
 
-        $this->string .= $a. " + " .$b;
+        $this->string .= $a . " + " . $b;
         $this->answer = $a + $b;
 
 
@@ -42,7 +44,7 @@ class Calculator {
         $a = $this->firstArgument;
         $b = $this->secondArgument;
 
-        $this->string .= $a. " - " .$b;
+        $this->string .= $a . " - " . $b;
         $this->answer = $a - $b;
 
         return $this;
@@ -55,7 +57,7 @@ class Calculator {
         $a = $this->firstArgument;
         $b = $this->secondArgument;
 
-        $this->string .= $a. " * " .$b;
+        $this->string .= $a . " * " . $b;
         $this->answer = $a * $b;
 
         return $this;
@@ -72,7 +74,7 @@ class Calculator {
             return false;
         }
 
-        $this->string .= $a. " / " .$b;
+        $this->string .= $a . " / " . $b;
         $this->answer = $a / $b;
         return $this;
     }
@@ -86,7 +88,7 @@ class Calculator {
 
         }
 
-        $this->string = "(" . $this->string. ")" . " / " .$equal;
+        $this->string = "(" . $this->string . ")" . " / " . $equal;
         $this->answer /= $equal;
         return $this;
 
@@ -95,7 +97,7 @@ class Calculator {
     public function actionMultiplicationBy(int $equal): Calculator
     {
 
-        $this->string = "(" . $this->string. ")" . " * " .$equal;
+        $this->string = "(" . $this->string . ")" . " * " . $equal;
         $this->answer *= $equal;
         return $this;
 
@@ -104,7 +106,7 @@ class Calculator {
     public function actionAdditionBy(int $equal): Calculator
     {
 
-        $this->string = "(" . $this->string. ")" . " + " .$equal;
+        $this->string = "(" . $this->string . ")" . " + " . $equal;
         $this->answer += $equal;
         return $this;
 
@@ -113,7 +115,7 @@ class Calculator {
     public function actionSubtractionBy(int $equal): Calculator
     {
 
-        $this->string = "(" . $this->string. ")" . " - " .$equal;
+        $this->string = "(" . $this->string . ")" . " - " . $equal;
         $this->answer -= $equal;
         return $this;
 
@@ -121,12 +123,11 @@ class Calculator {
 
 }
 
-$object = new Calculator(6,2);
+$object = new Calculator(6, 2);
 
 echo $object
     ->actionAddition()
-        ->actionMultiplicationBy(2)
-        ->actionSubtractionBy(1)
-        ->actionMultiplicationBy(3)
-        ->actionDivideBy(5);
-
+    ->actionMultiplicationBy(2)
+    ->actionSubtractionBy(1)
+    ->actionMultiplicationBy(3)
+    ->actionDivideBy(5);

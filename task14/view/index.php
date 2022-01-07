@@ -6,20 +6,7 @@
 
 </form>
 
-<script>
-    function checkParams() {
-        var email = $('#email').val();
-        var password = $('#password').val();
-
-        if(email.length !== 0 && password.length !== 0) {
-            $('#submit').removeAttr('disabled');
-        } else {
-            $('#submit').attr('disabled', 'disabled');
-        }
-    }
-
-
-</script>
+<script src="../task14/other/js/main.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-rc1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>

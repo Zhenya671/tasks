@@ -25,7 +25,6 @@ class User
 
     public function getUsers()
     {
-
         return include 'db.php';
 
     }
@@ -79,7 +78,7 @@ class User
             }
         }
 
-        $this->errorsValidate[] = 'incorrect password';
+        $this->errorsValidate[] = 'incorrect login or password';
         return false;
 
     }
@@ -101,7 +100,6 @@ class User
                 return true;
             }
         }
-        $this->errorsValidate[] = 'incorrect login';
         return false;
 
     }

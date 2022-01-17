@@ -31,13 +31,13 @@ class PrintPhpDocs
             $properties = $this->decodeObject($reflection->getProperties());
             if (!empty($properties)) {
                 echo 'Properties are: <br><br>';
-                $this->getClassInfo($properties, $className, 'Property', $class);
+                $this->getClassData($properties, $className, 'Property', $class);
             }
 
             $methods = $this->decodeObject($reflection->getMethods());
             if (!empty($methods)) {
                 echo 'Methods are: <br><br>';
-                $this->getClassInfo($methods, $className, 'Method', $class);
+                $this->getClassData($methods, $className, 'Method', $class);
             }
 
         }
@@ -52,7 +52,7 @@ class PrintPhpDocs
     /**
      * @throws ReflectionException
      */
-    private function getClassInfo(array $properties, string $className, string $type, string $class)
+    private function getClassData(array $properties, string $className, string $type, string $class)
     {
         foreach ($properties as $property) {
 

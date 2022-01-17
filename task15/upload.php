@@ -1,9 +1,7 @@
 <?php
 
-
 require_once("model/File.php");
 require_once("logger/Logger.php");
-
 
 $object = new File();
 

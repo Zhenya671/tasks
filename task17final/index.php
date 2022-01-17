@@ -92,7 +92,7 @@ $app->get('/blockUser', function (ServerRequestInterface $request, ResponseInter
         'cookieBlockUser' => Cookie::getData('block-user'),
     ]);
 
-    Cookie::destroy();
+//     Cookie::destroy();
     $response->getBody()->write($body);
     return $response;
 

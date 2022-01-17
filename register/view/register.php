@@ -1,4 +1,4 @@
-<form method="post">
+<form method="post" action="register">
 
     <input type="hidden" name="action" value="register">
 
@@ -32,6 +32,6 @@
     </label>
     <input id='confirmPassword' name="signUpForm[confirmPassword]" type="password" '>
 
-    <input type='submit' id='submit' value='Send' >
+    <input type='submit' id='submit' value='Send'>
 
 </form>

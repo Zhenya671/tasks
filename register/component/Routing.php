@@ -1,25 +1,37 @@
 <?php
 
-class Routing {
+class Routing
+{
 
-    public static function buildRoute() {
+    private $routes;
 
-        $controllerName = "IndexController";
-        $action = "index";
-
-        $route = explode("/", $_SERVER['REQUEST_URI']);
-        if($route[1] != '') {
-            $controllerName = ucfirst($route[1]. "Controller");
-        }
-
-        if(isset($route[2]) && $route[2] !='') {
-            $action = $route[2];
-        }
-
-        $controller = new $controllerName();
-        $controller->$action();
-
+    public function __construct()
+    {
+        $this->routes = include('routes.php');
     }
 
+    public function run()
+    {
 
+        $uri = trim($_SERVER['REQUEST_URI'], '/');
+
+        foreach ($this->routes as $uriPattern => $path) {
+            if (preg_match("~$uriPattern~", $uri)) {
+                $internalRoute = preg_replace("~$uriPattern~", $path, $uri, 1);
+
+                $segments = explode('/', $internalRoute);
+                $controllerName = 'RegisterController';
+
+                $actionName = 'action' . ucfirst(array_shift($segments));
+                $controllerObject = new $controllerName;
+                $result = $controllerObject->$actionName();
+
+                if ($result != null) {
+                    break;
+                }
+
+            }
+        }
+
+    }
 }

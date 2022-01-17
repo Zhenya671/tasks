@@ -1,9 +1,10 @@
 <?php
 
-class View {
+class View
+{
 
-
-    public function render() {
+    public function render()
+    {
         include 'register.php';
     }
 

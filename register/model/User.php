@@ -8,16 +8,15 @@ class User extends Model
     public function signUpUsers($signUpForm): bool
     {
 
-
         $this->validateForSignUp($signUpForm);
         if (!empty($this->errorsValidate)) {
             foreach ($this->errorsValidate as $errors) {
                 echo $errors . '<br>';
             }
-
             return false;
-        } else {
 
+        } else {
+            echo 'user register success';
             $this->registerNewUser($signUpForm['email'], $signUpForm['firstName'], $signUpForm['lastName'], $signUpForm['password']);
             return true;
 
@@ -44,9 +43,6 @@ class User extends Model
         } catch (Exception $e) {
             $this->db->rollBack();
             echo "Error: " . $e->getMessage();
-        }
-        if (!empty($stmt->errorInfo())){
-            echo "user with $email email already exist";
         }
 
     }
@@ -128,6 +124,5 @@ class User extends Model
         return true;
 
     }
-
 
 }

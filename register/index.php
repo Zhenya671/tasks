@@ -1,7 +1,7 @@
 <?php
+session_start();
 
 define('ROOT', dirname(__FILE__));
-
 spl_autoload_register(function ($class_name) {
 
     $array_paths = [
@@ -18,11 +18,10 @@ spl_autoload_register(function ($class_name) {
 
         if (is_file($path)) {
             include_once $path;
+
         }
     }
 });
 
-Routing::buildRoute();
-
-
-
+$run = new Routing();
+$run->run();

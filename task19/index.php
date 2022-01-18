@@ -61,7 +61,7 @@ class TestCLI
         while (!feof($fd)) {
 
             $array = explode(' ', fgets($fd));
-            print_r($array);
+//             print_r($array);
             $returnArray[] = $array[2] . ' ' . $array[3];
 
         }

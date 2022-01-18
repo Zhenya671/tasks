@@ -8,10 +8,12 @@ class TestCLI
     public array $arrayOfCommands;
     public array $arguments;
 
+
     public function __construct($argv)
     {
-//        var_dump($this->getDateAction());
-//        $this->getDateAction();
+//        var_dump($this->getStatusAction());
+//        $this->getStatusAction();
+
         $this->arguments = $argv;
 
         $this->setArrayOfCommands();
@@ -52,16 +54,41 @@ class TestCLI
         -d  command return dates of committed actions in task 17 logger\n\n";
     }
 
+//    public function getStatusAction() {
+//        $returnArray = [];
+//        $fd = $this->openFile();
+//        while (!feof($fd)) {
+//
+//            $array = explode(' ', fgets($fd));
+//           for ($i=0;$i<=count($array)-1; $i++){
+////               $returnArray[] = array_slice($array, $array[$i] == 'status');
+//               if ($array[$i] == 'status:' && !empty($array[$i])){
+//                   echo "$array[$i] ".$array[$i+1]. ' '.$array[$i+2]. ' '.$array[$i+3]. "\n";
+//               }
+////               var_dump(array_slice($array, $array[$i] == 'status:'));
+////               break;
+//           }
+//
+//
+//        }
+//
+//        fclose($fd);
+//        $returnString = '';
+//
+//        for ($i = 0; $i <= count($returnArray) - 1; $i++) {
+//            $returnString .= $i + 1 . '. ' . $returnArray[$i] . "\n";
+//        }
+//        return $returnString;
+//    }
 
     public function getDateAction(): string
     {
 
         $returnArray = [];
-        $fd = fopen(__DIR__ . '/task17final/logger.log', 'r');
+        $fd = $this->openFile();
         while (!feof($fd)) {
 
             $array = explode(' ', fgets($fd));
-            print_r($array);
             $returnArray[] = $array[2] . ' ' . $array[3];
 
         }
@@ -79,7 +106,7 @@ class TestCLI
     public function getTypeAction(): string
     {
         $returnArray = [];
-        $fd = fopen(__DIR__ . '/task17final/logger.log', 'r');
+        $fd = $this->openFile();
         while (!feof($fd)) {
 
             $array = explode(' ', fgets($fd));
@@ -95,6 +122,14 @@ class TestCLI
         }
         return $returnString;
     }
+
+    protected function openFile()
+    {
+
+        return fopen(__DIR__ . '/task17final/logger.log', 'r');
+
+    }
+
 }
 
 $var = new TestCLI($argv);

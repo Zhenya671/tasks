@@ -11,8 +11,6 @@ class TestCLI
 
     public function __construct($argv)
     {
-//        var_dump($this->getStatusAction());
-//        $this->getStatusAction();
 
         $this->arguments = $argv;
 

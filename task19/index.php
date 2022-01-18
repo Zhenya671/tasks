@@ -11,7 +11,6 @@ class TestCLI
 
     public function __construct($argv)
     {
-
         $this->arguments = $argv;
 
         $this->setArrayOfCommands();
@@ -41,7 +40,8 @@ class TestCLI
         return $this->arrayOfCommands = [
             $this->getDateAction() => '-d',
             $this->getTypeAction() => '-t',
-            $this->getHelpData() => '-h'
+            $this->getHelpData() => '-h',
+            $this->getStatusAction() => '-s'
         ];
     }
 
@@ -49,35 +49,31 @@ class TestCLI
     {
         return "For get more information of commands write -h\n\n
         -t  command return types of actions in task 17 logger\n\n
-        -d  command return dates of committed actions in task 17 logger\n\n";
+        -d  command return dates of committed actions in task 17 logger\n\n
+        -s  command return statuses of actions in task 17 logger\n\n";
     }
 
-//    public function getStatusAction() {
-//        $returnArray = [];
-//        $fd = $this->openFile();
-//        while (!feof($fd)) {
-//
-//            $array = explode(' ', fgets($fd));
-//           for ($i=0;$i<=count($array)-1; $i++){
-////               $returnArray[] = array_slice($array, $array[$i] == 'status');
-//               if ($array[$i] == 'status:' && !empty($array[$i])){
-//                   echo "$array[$i] ".$array[$i+1]. ' '.$array[$i+2]. ' '.$array[$i+3]. "\n";
-//               }
-////               var_dump(array_slice($array, $array[$i] == 'status:'));
-////               break;
-//           }
-//
-//
-//        }
-//
-//        fclose($fd);
-//        $returnString = '';
-//
-//        for ($i = 0; $i <= count($returnArray) - 1; $i++) {
-//            $returnString .= $i + 1 . '. ' . $returnArray[$i] . "\n";
-//        }
-//        return $returnString;
-//    }
+    public function getStatusAction(): string
+    {
+        $statuses = [];
+        $fd = $this->openFile();
+        while (!feof($fd)) {
+
+            $array = explode(' ', fgets($fd));
+            $countStatus = array_search('status:', $array);
+            $returnArray = array_slice($array, $countStatus);
+            $statuses[] = implode(' ', $returnArray);
+        }
+
+        fclose($fd);
+        $returnString = '';
+
+        for ($i = 0; $i <= count($statuses) - 1; $i++) {
+            $returnString .= $i + 1 . '. ' . $statuses[$i] . "\n";
+        }
+
+        return $returnString;
+    }
 
     public function getDateAction(): string
     {
@@ -120,6 +116,7 @@ class TestCLI
         }
         return $returnString;
     }
+
 
     protected function openFile()
     {

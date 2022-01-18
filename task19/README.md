@@ -34,3 +34,6 @@ so the php file should require parameters to return
 also try to use short parameters instead fullname like: -a (Age)  -s  (Sexuality)
 
 this is for PHP CLI (command line - Terminal) usage  experience.
+
+For start using app u should go to the directory where the index.php located.
+Open terminal and write $ php index.php -h for getting information about other commands.

@@ -10,7 +10,8 @@ class TestCLI
 
     public function __construct($argv)
     {
-//        $this->getLogs();
+//        var_dump($this->getDateAction());
+//        $this->getDateAction();
         $this->arguments = $argv;
 
         $this->setArrayOfCommands();
@@ -38,8 +39,8 @@ class TestCLI
     public function setArrayOfCommands(): array
     {
         return $this->arrayOfCommands = [
-            'date' => '-d',
-            $this->getLogs() => '-t',
+            $this->getDateAction() => '-d',
+            $this->getTypeAction() => '-t',
             $this->getHelpData() => '-h'
         ];
     }
@@ -51,28 +52,49 @@ class TestCLI
         -d  command return dates of committed actions in task 17 logger\n\n";
     }
 
-    public function getLogs(): string
+
+    public function getDateAction(): string
     {
-    $returnString ='';
-        $fd = fopen(__DIR__.'/task17final/logger.log', 'r');
-        while(!feof($fd))
-        {
+
+        $returnArray = [];
+        $fd = fopen(__DIR__ . '/task17final/logger.log', 'r');
+        while (!feof($fd)) {
 
             $array = explode(' ', fgets($fd));
-            $returnString =  " $array[0] ";
+            print_r($array);
+            $returnArray[] = $array[2] . ' ' . $array[3];
 
-
-//            print_r($array);
-
-//            $str = htmlentities(fgets($fd));
-//            echo $str;
         }
 
         fclose($fd);
+        $returnString = '';
 
+        for ($i = 0; $i <= count($returnArray) - 1; $i++) {
+            $returnString .= $i + 1 . '. ' . $returnArray[$i] . "\n";
+        }
         return $returnString;
     }
 
+
+    public function getTypeAction(): string
+    {
+        $returnArray = [];
+        $fd = fopen(__DIR__ . '/task17final/logger.log', 'r');
+        while (!feof($fd)) {
+
+            $array = explode(' ', fgets($fd));
+            $returnArray[] = $array[0];
+
+        }
+
+        fclose($fd);
+        $returnString = '';
+
+        for ($i = 0; $i <= count($returnArray) - 1; $i++) {
+            $returnString .= $i + 1 . '. ' . $returnArray[$i] . "\n";
+        }
+        return $returnString;
+    }
 }
 
 $var = new TestCLI($argv);

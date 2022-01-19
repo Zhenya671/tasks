@@ -1,5 +1,6 @@
 php version 8.0 
 
+---
 task 19
 
 Create full-based console application to read logs from Task #17. You console application must have following features:
@@ -35,5 +36,6 @@ also try to use short parameters instead fullname like: -a (Age)  -s  (Sexuality
 
 this is for PHP CLI (command line - Terminal) usage  experience.
 
-For start using app u should go to the directory where the index.php located.
-Open terminal and write $ php index.php -h for getting information about other commands.
+---
+<h1>For start using app u should go to the directory where the index.php located. 
+Open terminal and write $ php index.php -h for getting information about other commands.</h1>

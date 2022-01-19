@@ -3,10 +3,10 @@
 class DB
 {
 
-    const USER = "zhenya";
-    const PASS = 'root';
+    const USER = "root";
+    const PASS = '';
     const HOST = "localhost";
-    const DB = "users";
+    const DB = "usersRegister";
 
     public static function connToDB(): PDO
     {

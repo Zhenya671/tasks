@@ -1,4 +1,3 @@
-
 CREATE TABLE users
 (
     id_user      INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -11,4 +10,5 @@ CREATE TABLE users
   DEFAULT CHARSET = utf8
   COLLATE = utf8_general_ci;
 
-SELECT * FROM `users`
+SELECT *
+FROM `users`

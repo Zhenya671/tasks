@@ -89,7 +89,7 @@ class Authentication
 
         }
         $statement = $this->database->getConnection()->prepare(
-            'SELECT * FROM Users WHERE email = :email'
+            'SELECT * FROM users WHERE email = :email'
         );
         $statement->execute([
             'email' => $data['email']
@@ -102,7 +102,7 @@ class Authentication
         }
 
         $statement = $this->database->getConnection()->prepare(
-            "INSERT INTO Users(email, first_name, last_name, password, created_date)
+            "INSERT INTO users(email, first_name, last_name, password, created_date)
 				VALUES (:email, :first_name, :last_name, :password, NOW())"
         );
         $statement->execute([
@@ -136,7 +136,7 @@ class Authentication
         }
 
         $statement = $this->database->getConnection()->prepare(
-            'SELECT * FROM Users WHERE email = :email'
+            'SELECT * FROM users WHERE email = :email'
         );
         $statement->execute([
             'email' => $email

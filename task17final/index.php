@@ -157,7 +157,7 @@ $app->post('/register-post', function (ServerRequestInterface $request, Response
 
     try {
         $authentication->register($params);
-        Cookie::create($params['email']);
+        Cookie::create($params);
 
     } catch (AuthenticationException $exception) {
         $session->setData('message', $exception->getMessage());

@@ -92,7 +92,7 @@ $app->get('/blockUser', function (ServerRequestInterface $request, ResponseInter
         'cookieBlockUser' => Cookie::getData('block-user'),
     ]);
 
-//     Cookie::destroy();
+     Cookie::destroy();
     $response->getBody()->write($body);
     return $response;
 
@@ -101,6 +101,7 @@ $app->get('/blockUser', function (ServerRequestInterface $request, ResponseInter
 $app->post('/login-post', function (ServerRequestInterface $request, ResponseInterface $response) use ($authentication, $session) {
 
     $params = (array)$request->getParsedBody();
+    $count = $session->getData('loginAttempt');
 
     try {
         $authentication->login($params['email'], $params['password']);
@@ -110,16 +111,17 @@ $app->post('/login-post', function (ServerRequestInterface $request, ResponseInt
 
         $session->setData('message', $exception->getMessage());
         Logger::attempt($session->getData('message'), 'Login');
-        if (!empty($params['email']) && $session->getData('loginAttempt') == null) {
+        if (!empty($params['email']) && $count === null) {
             $session->setData('loginAttempt', 1);
-        } elseif (!empty($params['email']) && $session->getData('loginAttempt') == 1) {
-            $session->setData('loginAttempt', $session->getData('loginAttempt') + 1);
-        } elseif (!empty($params['email']) && $session->getData('loginAttempt') == 2) {
-            $session->setData('loginAttempt', $session->getData('loginAttempt') + 1);
+        } elseif (!empty($params['email']) && $count === 1) {
+            $session->setData('loginAttempt', $count + 1);
+        } elseif (!empty($params['email']) && $count === 2) {
+            $session->setData('loginAttempt', $count + 1);
         }
 
-        if (!empty($params['email']) && $session->getData('loginAttempt') == 3) {
-            Logger::failedAttempt($session->getData('loginAttempt'), $params['email']);
+        if (!empty($params['email']) && $session->getData('loginAttempt') === 3) {
+            Logger::failedAttempt($count, $params['email']);
+//            $count = null;
             Cookie::createForBlocUser($params);
 
             return $response->withHeader('Location', BLOCK_USER)

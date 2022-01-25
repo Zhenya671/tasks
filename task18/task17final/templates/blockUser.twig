@@ -1,0 +1,15 @@
+{% extends 'parts/base.twig' %}
+{% block body %}
+
+{% if cookieBlockUser is not null %}
+
+    <p>U banned to 15 minutes.</p>
+
+    {% else %}
+
+        <p>now u can return to trying login </p>
+
+
+{% endif %}
+{% endblock %}
+

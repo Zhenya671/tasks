@@ -4,9 +4,9 @@ class DB
 {
 
     const USER = "root";
-    const PASS = '';
+    const PASS = '47819812';
     const HOST = "localhost";
-    const DB = "usersRegister";
+    const DB = "evgeni";
 
     public static function connToDB(): PDO
     {

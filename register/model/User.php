@@ -25,7 +25,7 @@ class User extends Model
 
     public function registerNewUser($email, $firstName, $lastName, $password)
     {
-        $sql = "INSERT INTO Users(email, first_name, last_name, password, created_date)
+        $sql = "INSERT INTO users(email, first_name, last_name, password, created_date)
 				VALUES (:email, :first_name, :last_name, :password, NOW())
 		";
 

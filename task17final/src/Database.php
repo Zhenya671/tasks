@@ -2,7 +2,6 @@
 
 namespace App;
 
-use http\Exception\InvalidArgumentException;
 use PDO;
 use PDOException;
 
@@ -31,7 +30,7 @@ class Database
         try {
             $this->connection = new PDO($dsn, $username, $password);
         } catch (PDOException $exception) {
-            throw new InvalidArgumentException('Database error: ' . $exception->getMessage());
+            throw new \InvalidArgumentException('Database error: ' . $exception->getMessage());
         }
 
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

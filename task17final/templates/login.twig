@@ -1,0 +1,48 @@
+{% extends 'parts/base.twig' %}
+
+{% block body %}
+
+    <h1>Login </h1>
+    {% if cookie is null and user is null %}
+
+        {% if message is not null %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>
+        {% endif %}
+
+        <form action="/login-post" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" class="form-control" id="email" value="{{ form ? form.email }}"/>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" class="form-control" id="password"/>
+            </div>
+
+            <div class="form-group">
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">Remember me</label>
+                </div>
+            </div>
+            {% if block is not null %}
+
+                <button type="submit" class="btn btn-primary">Login</button>
+
+            {% endif %}
+
+
+            <button type="submit" class="btn btn-primary">Login</button>
+
+        </form>
+    {% else %}
+
+
+        <br><p class="nav-link">u already logged</p>
+        <a class="nav-link" href="/">return to home page</a>
+
+    {% endif %}
+{% endblock %}

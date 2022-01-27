@@ -1,0 +1,26 @@
+{
+    "name": "zhenya/task17final",
+    "description": "task17",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Zhenya671",
+            "email": "turbanboss193@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "twig/twig": "^3.3",
+        "slim/slim": "^4.9",
+        "slim/psr7": "^1.5",
+        "ext-PDO": "^7.4",
+        "php":  "~7.4",
+      "ext-http": "*",
+      "ext-exif": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}

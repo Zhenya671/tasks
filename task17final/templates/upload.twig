@@ -1,0 +1,29 @@
+{% extends 'parts/base.twig' %}
+
+{% block body %}
+{% if cookie is not null %}
+     {% if uploadMessage is not null %}
+        <div class="alert alert-danger" role="alert">
+            {{ uploadMessage }}
+        </div>
+    {%  endif %}
+
+    <h1>home page</h1>
+        <form action="/upload-post" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="selector">U can upload file</label>
+                <input type="file" name="upload" id="selector" value="select" />
+
+                <button class="btn btn-primary">upload</button>
+            </div>
+        </form>
+
+    {% else %}
+
+        <div class="justify-content-end">
+            <p>Just login or Register</p>
+        </div>
+    {%  endif %}
+
+
+{% endblock %}

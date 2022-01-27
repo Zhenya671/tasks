@@ -92,7 +92,7 @@ $app->get('/blockUser', function (ServerRequestInterface $request, ResponseInter
         'cookieBlockUser' => Cookie::getData('block-user'),
     ]);
 
-    Cookie::destroy();
+//    Cookie::destroy();
     $response->getBody()->write($body);
     return $response;
 
@@ -120,8 +120,7 @@ $app->post('/login-post', function (ServerRequestInterface $request, ResponseInt
         }
 
         if (!empty($params['email']) && $session->getData('loginAttempt') === 3) {
-            Logger::failedAttempt(3, $params['email']);
-            $session->flush('loginAttempt');
+            Logger::failedAttempt($session->flush('loginAttempt'), $params['email']);
             Cookie::createForBlocUser($params);
 
             return $response->withHeader('Location', BLOCK_USER)
